@@ -1,11 +1,10 @@
-'use strict';
+'use strict'
 
 import uiRouter from 'angular-ui-router'
 import routing from './admin.routes'
 
 export class AdminComponent {
-
-  constructor($http, Auth, User) {
+  constructor ($http, Auth, User) {
     'ngInject'
 
     this.$http = $http
@@ -20,9 +19,9 @@ export class AdminComponent {
       })
   }
 
-  delete(user) {
-    user.$remove();
-    this.users.splice(this.users.indexOf(user), 1);
+  delete (user) {
+    user.$remove()
+    this.users.splice(this.users.indexOf(user), 1)
   }
 }
 

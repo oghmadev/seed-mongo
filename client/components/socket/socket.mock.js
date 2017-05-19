@@ -1,18 +1,18 @@
-'use strict';
+'use strict'
 
-const angular = require('angular');
+const angular = require('angular')
 
 angular.module('socketMock', [])
-  .factory('socket', function() {
+  .factory('socket', function () {
     return {
       socket: {
-        connect: function() {},
-        on: function() {},
-        emit: function() {},
-        receive: function() {}
+        connect: function () {},
+        on: function () {},
+        emit: function () {},
+        receive: function () {}
       },
 
-      syncUpdates: function() {},
-      unsyncUpdates: function() {}
-    };
-  });
+      syncUpdates: function () {},
+      unsyncUpdates: function () {}
+    }
+  })

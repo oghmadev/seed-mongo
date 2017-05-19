@@ -1,10 +1,10 @@
 // Karma configuration
 // http://karma-runner.github.io/0.13/config/configuration-file.html
-/*eslint-env node*/
+/* eslint-env node */
 
-import makeWebpackConfig from './webpack.make';
+import makeWebpackConfig from './webpack.make'
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     // base path, that will be used to resolve files and exclude
     basePath: '',
@@ -29,14 +29,14 @@ module.exports = function(config) {
 
     coverageReporter: {
       reporters: [{
-        type: 'html', //produces a html document after code is run
+        type: 'html', // produces a html document after code is run
         subdir: 'client'
       }, {
         type: 'json',
         subdir: '.',
         file: 'client-coverage.json'
       }],
-      dir: 'coverage/' //path to created html doc
+      dir: 'coverage/' // path to created html doc
     },
 
     plugins: [
@@ -88,5 +88,5 @@ module.exports = function(config) {
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
     singleRun: false
-  });
-};
+  })
+}

@@ -3,12 +3,11 @@
 import angular from 'angular'
 
 export default angular.module('validation.match', [])
-  .directive('match', ['$parse', function match($parse) {
+  .directive('match', ['$parse', function match ($parse) {
     return {
       require: '?ngModel',
       restrict: 'A',
       link: (scope, elem, attrs, ctrl) => {
-
         if (!ctrl || !attrs.match) return
 
         const matchGetter = $parse(attrs.match)
@@ -35,9 +34,9 @@ export default angular.module('validation.match', [])
           } else {
             value = matcher === match
           }
-          /*jslint bitwise: true */
+          /* jslint bitwise: true */
           value ^= notMatch
-          /*jslint bitwise: false */
+          /* jslint bitwise: false */
           return !!value
         }
 

@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-export default function routes($stateProvider) {
-  'ngInject';
+export default function routes ($stateProvider) {
+  'ngInject'
 
   $stateProvider
     .state('admin', {

@@ -1,18 +1,18 @@
-'use strict';
+'use strict'
 
-import io from 'socket.io-client';
+import io from 'socket.io-client'
 
-function Socket(socketFactory) {
+function Socket (socketFactory) {
   // socket.io now auto-configures its connection when we ommit a connection url
   var ioSocket = io('', {
     // Send auth token on connection, you will need to DI the Auth service above
     // 'query': 'token=' + Auth.getToken()
     path: '/socket.io-client'
-  });
+  })
 
   var socket = socketFactory({
     ioSocket
-  });
+  })
 
   return {
     socket,
@@ -27,41 +27,41 @@ function Socket(socketFactory) {
      * @param {Array} array
      * @param {Function} cb
      */
-    syncUpdates(modelName, array, cb) {
-      cb = cb || angular.noop;
+    syncUpdates (modelName, array, cb) {
+      cb = cb || angular.noop
 
       /**
        * Syncs item creation/updates on 'model:save'
        */
-      socket.on(modelName + ':save', function(item) {
+      socket.on(modelName + ':save', function (item) {
         var oldItem = _.find(array, {
           _id: item._id
-        });
-        var index = array.indexOf(oldItem);
-        var event = 'created';
+        })
+        var index = array.indexOf(oldItem)
+        var event = 'created'
 
         // replace oldItem if it exists
         // otherwise just add item to the collection
         if (oldItem) {
-          array.splice(index, 1, item);
-          event = 'updated';
+          array.splice(index, 1, item)
+          event = 'updated'
         } else {
-          array.push(item);
+          array.push(item)
         }
 
-        cb(event, item, array);
-      });
+        cb(event, item, array)
+      })
 
       /**
        * Syncs removed items on 'model:remove'
        */
-      socket.on(modelName + ':remove', function(item) {
-        var event = 'deleted';
+      socket.on(modelName + ':remove', function (item) {
+        var event = 'deleted'
         _.remove(array, {
           _id: item._id
-        });
-        cb(event, item, array);
-      });
+        })
+        cb(event, item, array)
+      })
     },
 
     /**
@@ -69,13 +69,13 @@ function Socket(socketFactory) {
      *
      * @param modelName
      */
-    unsyncUpdates(modelName) {
-      socket.removeAllListeners(modelName + ':save');
-      socket.removeAllListeners(modelName + ':remove');
+    unsyncUpdates (modelName) {
+      socket.removeAllListeners(modelName + ':save')
+      socket.removeAllListeners(modelName + ':remove')
     }
-  };
+  }
 }
 
 export default angular.module('seedMongoApp.socket', [])
   .factory('socket', Socket)
-  .name;
+  .name

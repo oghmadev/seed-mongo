@@ -4,14 +4,14 @@ import uiRouter from 'angular-ui-router'
 import routes from './signup.routes'
 
 export class SignupController {
-  constructor(Auth, $state) {
+  constructor (Auth, $state) {
     'ngInject'
 
     this.Auth = Auth
     this.$state = $state
   }
 
-  $onInit() {
+  $onInit () {
     this.user = {
       name: '',
       email: '',
@@ -21,9 +21,8 @@ export class SignupController {
     this.saveFailure = false
   }
 
-
-  register(form) {
-    if(form.$valid) {
+  register (form) {
+    if (form.$valid) {
       this.saveFailure = false
 
       return this.Auth.createUser(this.user)

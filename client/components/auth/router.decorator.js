@@ -2,7 +2,7 @@
 
 import * as _ from 'lodash'
 
-export function routerDecorator($rootScope, $state, Auth) {
+export function routerDecorator ($rootScope, $state, Auth) {
   'ngInject'
   // Redirect to login if route requires auth and the user is not logged in, or doesn't have required role
 
@@ -18,7 +18,6 @@ export function routerDecorator($rootScope, $state, Auth) {
 
           return Auth.isLoggedIn()
             .then(is => {
-
               $state.go(is ? 'main' : 'login')
             })
         })
