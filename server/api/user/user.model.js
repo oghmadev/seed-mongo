@@ -1,10 +1,12 @@
 'use strict'
 /* eslint no-invalid-this:0 */
-import crypto from 'crypto'
-mongoose.Promise = require('bluebird')
-import mongoose, {Schema} from 'mongoose'
 
-var UserSchema = new Schema({
+import crypto from 'crypto'
+import mongoose, { Schema } from 'mongoose'
+
+mongoose.Promise = require('bluebird')
+
+const UserSchema = new Schema({
   name: String,
   email: {
     type: String,
@@ -69,14 +71,14 @@ UserSchema
 UserSchema
   .path('email')
   .validate(function (value, respond) {
-    return this.constructor.findOne({ email: value }).exec()
+    return this.constructor.findOne({email: value}).exec()
       .then(user => {
         if (user) {
-          if (this.id === user.id) {
-            return respond(true)
-          }
+          if (this.id === user.id) return respond(true)
+
           return respond(false)
         }
+
         return respond(true)
       })
       .catch(function (err) {
@@ -84,7 +86,7 @@ UserSchema
       })
   }, 'The specified email address is already in use.')
 
-var validatePresenceOf = function (value) {
+const validatePresenceOf = function (value) {
   return value && value.length
 }
 
@@ -94,25 +96,20 @@ var validatePresenceOf = function (value) {
 UserSchema
   .pre('save', function (next) {
     // Handle new/update passwords
-    if (!this.isModified('password')) {
-      return next()
-    }
+    if (!this.isModified('password')) return next()
 
-    if (!validatePresenceOf(this.password)) {
-      return next(new Error('Invalid password'))
-    }
+    if (!validatePresenceOf(this.password)) return next(new Error('Invalid password'))
 
     // Make salt with a callback
     this.makeSalt((saltErr, salt) => {
-      if (saltErr) {
-        return next(saltErr)
-      }
+      if (saltErr) return next(saltErr)
+
       this.salt = salt
       this.encryptPassword(this.password, (encryptErr, hashedPassword) => {
-        if (encryptErr) {
-          return next(encryptErr)
-        }
+        if (encryptErr) return next(encryptErr)
+
         this.password = hashedPassword
+
         return next()
       })
     })
@@ -131,20 +128,13 @@ UserSchema.methods = {
    * @api public
    */
   authenticate (password, callback) {
-    if (!callback) {
-      return this.password === this.encryptPassword(password)
-    }
+    if (!callback) return this.password === this.encryptPassword(password)
 
     this.encryptPassword(password, (err, pwdGen) => {
-      if (err) {
-        return callback(err)
-      }
+      if (err) return callback(err)
 
-      if (this.password === pwdGen) {
-        return callback(null, true)
-      } else {
-        return callback(null, false)
-      }
+      if (this.password === pwdGen) return callback(null, true)
+      else return callback(null, false)
     })
   },
 
@@ -157,27 +147,21 @@ UserSchema.methods = {
    * @api public
    */
   makeSalt (byteSize, callback) {
-    var defaultByteSize = 16
+    const DEFAULT_BYTE_SIZE = 16
 
     if (typeof arguments[0] === 'function') {
       callback = arguments[0]
-      byteSize = defaultByteSize
-    } else if (typeof arguments[1] === 'function') {
-      callback = arguments[1]
+      byteSize = DEFAULT_BYTE_SIZE
     } else {
-      throw new Error('Missing Callback')
+      if (typeof arguments[1] === 'function') callback = arguments[1]
+      else throw new Error('Missing Callback')
     }
 
-    if (!byteSize) {
-      byteSize = defaultByteSize
-    }
+    if (byteSize != null) byteSize = DEFAULT_BYTE_SIZE
 
     return crypto.randomBytes(byteSize, (err, salt) => {
-      if (err) {
-        return callback(err)
-      } else {
-        return callback(null, salt.toString('base64'))
-      }
+      if (err) return callback(err)
+      else return callback(null, salt.toString('base64'))
     })
   },
 
@@ -191,28 +175,22 @@ UserSchema.methods = {
    */
   encryptPassword (password, callback) {
     if (!password || !this.salt) {
-      if (!callback) {
-        return null
-      } else {
-        return callback('Missing password or salt')
-      }
+      if (!callback) return null
+      else return callback('Missing password or salt')
     }
 
-    var defaultIterations = 10000
-    var defaultKeyLength = 64
-    var salt = new Buffer(this.salt, 'base64')
+    const defaultIterations = 10000
+    const defaultKeyLength = 64
+    const salt = new Buffer(this.salt, 'base64')
 
     if (!callback) {
       return crypto.pbkdf2Sync(password, salt, defaultIterations, defaultKeyLength)
-                   .toString('base64')
+        .toString('base64')
     }
 
     return crypto.pbkdf2(password, salt, defaultIterations, defaultKeyLength, (err, key) => {
-      if (err) {
-        callback(err)
-      } else {
-        callback(null, key.toString('base64'))
-      }
+      if (err) callback(err)
+      else callback(null, key.toString('base64'))
     })
   }
 }

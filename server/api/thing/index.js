@@ -1,9 +1,9 @@
 'use strict'
 
-import {Router} from 'express'
+import { Router } from 'express'
 import * as controller from './thing.controller'
 
-const router = express.Router()
+const router = new Router()
 
 router.get('/', controller.index)
 router.get('/:id', controller.show)

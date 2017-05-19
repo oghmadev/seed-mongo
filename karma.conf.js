@@ -19,7 +19,7 @@ module.exports = function (config) {
       'spec.js': ['webpack']
     },
 
-    webpack: makeWebpackConfig({ TEST: true }),
+    webpack: makeWebpackConfig({TEST: true}),
 
     webpackMiddleware: {
       // webpack-dev-middleware configuration

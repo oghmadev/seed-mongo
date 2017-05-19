@@ -98,11 +98,11 @@ export function changePassword (req, res, next) {
  * Get my info
  */
 export function me (req, res, next) {
-  return User.findOne({ _id: req.user._id }, '-salt -password').exec()
+  return User.findOne({_id: req.user._id}, '-salt -password').exec()
     .then(user => { // don't ever give out the password or salt
       if (!user) return res.status(401).end()
 
-      res.json(user)
+      return res.json(user)
     })
     .catch(err => next(err))
 }

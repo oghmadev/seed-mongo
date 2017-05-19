@@ -1,7 +1,5 @@
 'use strict'
 
-import * as _ from 'lodash'
-
 export function routerDecorator ($rootScope, $state, Auth) {
   'ngInject'
   // Redirect to login if route requires auth and the user is not logged in, or doesn't have required role
