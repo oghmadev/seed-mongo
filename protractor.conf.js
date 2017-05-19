@@ -1,7 +1,7 @@
 // Protractor configuration
 // https://github.com/angular/protractor/blob/master/referenceConf.js
 
-'use strict';
+'use strict'
 
 var config = {
   // The timeout for each script run on the browser. This should be longer
@@ -50,7 +50,7 @@ var config = {
   // See the full list at https://github.com/jasmine/jasmine-npm
   jasmineNodeOpts: {
     defaultTimeoutInterval: 30000,
-    print: function() {}  // for jasmine-spec-reporter
+    print: function () {}  // for jasmine-spec-reporter
   },
 
   // Prepare environment for tests
@@ -58,19 +58,19 @@ var config = {
     serverConfig: require('./server/config/environment')
   },
 
-  onPrepare: function() {
-    require('babel-register');
-    var SpecReporter = require('jasmine-spec-reporter');
+  onPrepare: function () {
+    require('babel-register')
+    var SpecReporter = require('jasmine-spec-reporter')
     // add jasmine spec reporter
-    jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: true}));
+    jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: true}))
 
-    var serverConfig = config.params.serverConfig;
+    var serverConfig = config.params.serverConfig
 
     // Setup mongo for tests
-    var mongoose = require('mongoose');
-    mongoose.connect(serverConfig.mongo.uri, serverConfig.mongo.options); // Connect to database
+    var mongoose = require('mongoose')
+    mongoose.connect(serverConfig.mongo.uri, serverConfig.mongo.options) // Connect to database
   }
-};
+}
 
-config.params.baseUrl = config.baseUrl;
-exports.config = config;
+config.params.baseUrl = config.baseUrl
+exports.config = config

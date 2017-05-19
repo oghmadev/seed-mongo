@@ -1,15 +1,13 @@
-'use strict';
+'use strict'
 
 export class NavbarComponent {
+  constructor (Auth) {
+    'ngInject'
 
-  constructor(Auth) {
-    'ngInject';
-
-    this.isLoggedIn = Auth.isLoggedInSync;
-    this.isAdmin = Auth.isAdminSync;
-    this.getCurrentUser = Auth.getCurrentUserSync;
+    this.isLoggedIn = Auth.isLoggedInSync
+    this.isAdmin = Auth.isAdminSync
+    this.getCurrentUser = Auth.getCurrentUserSync
   }
-
 }
 
 export default angular.module('directives.navbar', [])
@@ -17,4 +15,4 @@ export default angular.module('directives.navbar', [])
     template: require('./navbar.html'),
     controller: NavbarComponent
   })
-  .name;
+  .name

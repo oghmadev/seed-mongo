@@ -4,12 +4,10 @@ import uiRouter from 'angular-ui-router'
 import routing from './settings.routes'
 
 export class SettingsComponent {
-  /*@ngInject*/
-
   constructor (Auth, $cookies) {
+    'ngInject'
     this.Auth = Auth
     this.$cookies = $cookies
-
   }
 
   $onInit () {

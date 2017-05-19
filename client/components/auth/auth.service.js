@@ -1,24 +1,24 @@
-'use strict';
+'use strict'
 
 class User {}
 
-export function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
-  'ngInject';
+export function AuthService ($location, $http, $cookies, $q, appConfig, Util, User) {
+  'ngInject'
 
-  var safeCb = Util.safeCb;
-  var currentUser = new User();
-  var userRoles = appConfig.userRoles || [];
+  var safeCb = Util.safeCb
+  var currentUser = new User()
+  var userRoles = appConfig.userRoles || []
   /**
    * Check if userRole is >= role
    * @param {String} userRole - role of current user
    * @param {String} role - role to check against
    */
-  var hasRole = function(userRole, role) {
+  var hasRole = function (userRole, role) {
     return userRoles.indexOf(userRole) > -1 && role.indexOf(userRole) > -1
-  };
+  }
 
   if ($cookies.get('token') && $location.path() !== '/logout') {
-    currentUser = User.get();
+    currentUser = User.get()
   }
 
   var Auth = {
@@ -30,36 +30,36 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      * @param  {Function} callback - function(error, user)
      * @return {Promise}
      */
-    login({
+    login ({
       email,
       password
     }, callback) {
       return $http.post('/auth/local', {
-          email,
-          password
-        })
+        email,
+        password
+      })
         .then(res => {
-          $cookies.put('token', res.data.token);
-          currentUser = User.get();
-          return currentUser.$promise;
+          $cookies.put('token', res.data.token)
+          currentUser = User.get()
+          return currentUser.$promise
         })
         .then(user => {
-          safeCb(callback)(null, user);
-          return user;
+          safeCb(callback)(null, user)
+          return user
         })
         .catch(err => {
-          Auth.logout();
-          safeCb(callback)(err.data);
-          return $q.reject(err.data);
-        });
+          Auth.logout()
+          safeCb(callback)(err.data)
+          return $q.reject(err.data)
+        })
     },
 
     /**
      * Delete access token and user info
      */
-    logout() {
-      $cookies.remove('token');
-      currentUser = new User();
+    logout () {
+      $cookies.remove('token')
+      currentUser = new User()
     },
 
     /**
@@ -69,14 +69,14 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      * @param  {Function} callback - function(error, user)
      * @return {Promise}
      */
-    createUser(user, callback) {
-      return User.save(user, function(data) {
-          currentUser = User.get();
-          return safeCb(callback)(null, user);
-        }, function(err) {
-          return safeCb(callback)(err);
-        })
-        .$promise;
+    createUser (user, callback) {
+      return User.save(user, function (data) {
+        currentUser = User.get()
+        return safeCb(callback)(null, user)
+      }, function (err) {
+        return safeCb(callback)(err)
+      })
+        .$promise
     },
 
     /**
@@ -87,18 +87,18 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      * @param  {Function} callback    - function(error, user)
      * @return {Promise}
      */
-    changePassword(oldPassword, newPassword, callback) {
+    changePassword (oldPassword, newPassword, callback) {
       return User.changePassword({
-          id: currentUser._id
-        }, {
-          oldPassword,
-          newPassword
-        }, function() {
-          return safeCb(callback)(null);
-        }, function(err) {
-          return safeCb(callback)(err);
-        })
-        .$promise;
+        id: currentUser._id
+      }, {
+        oldPassword,
+        newPassword
+      }, function () {
+        return safeCb(callback)(null)
+      }, function (err) {
+        return safeCb(callback)(err)
+      })
+        .$promise
     },
 
     /**
@@ -107,17 +107,17 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      * @param  {Function} [callback] - function(user)
      * @return {Promise}
      */
-    getCurrentUser(callback) {
-      var value = currentUser.hasOwnProperty('$promise') ? currentUser.$promise : currentUser;
+    getCurrentUser (callback) {
+      var value = currentUser.hasOwnProperty('$promise') ? currentUser.$promise : currentUser
 
       return $q.when(value)
         .then(user => {
-          safeCb(callback)(user);
-          return user;
+          safeCb(callback)(user)
+          return user
         }, () => {
-          safeCb(callback)({});
-          return {};
-        });
+          safeCb(callback)({})
+          return {}
+        })
     },
 
     /**
@@ -125,8 +125,8 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      *
      * @return {Object}
      */
-    getCurrentUserSync() {
-      return currentUser;
+    getCurrentUserSync () {
+      return currentUser
     },
 
     /**
@@ -135,13 +135,13 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      * @param  {Function} [callback] - function(is)
      * @return {Promise}
      */
-    isLoggedIn(callback) {
+    isLoggedIn (callback) {
       return Auth.getCurrentUser(undefined)
         .then(user => {
-          var is = user.hasOwnProperty('role');
-          safeCb(callback)(is);
-          return is;
-        });
+          var is = user.hasOwnProperty('role')
+          safeCb(callback)(is)
+          return is
+        })
     },
 
     /**
@@ -149,8 +149,8 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      *
      * @return {Bool}
      */
-    isLoggedInSync() {
-      return currentUser.hasOwnProperty('role');
+    isLoggedInSync () {
+      return currentUser.hasOwnProperty('role')
     },
 
     /**
@@ -160,14 +160,14 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      * @param  {Function} [callback] - function(has)
      * @return {Promise}
      */
-    hasRole(role, callback) {
+    hasRole (role, callback) {
       return Auth.getCurrentUser(undefined)
         .then(user => {
-          var has = user.hasOwnProperty('role') ? hasRole(user.role, role) : false;
+          var has = user.hasOwnProperty('role') ? hasRole(user.role, role) : false
 
-          safeCb(callback)(has);
-          return has;
-        });
+          safeCb(callback)(has)
+          return has
+        })
     },
 
     /**
@@ -176,8 +176,8 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      * @param  {String} role - the role to check against
      * @return {Bool}
      */
-    hasRoleSync(role) {
-      return hasRole(currentUser.role, role);
+    hasRoleSync (role) {
+      return hasRole(currentUser.role, role)
     },
 
     /**
@@ -187,8 +187,8 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      * @param  {Function|*} callback - optional, function(is)
      * @return {Bool|Promise}
      */
-    isAdmin() {
-      return Auth.hasRole.apply(Auth, [].concat.apply(['admin'], arguments));
+    isAdmin () {
+      return Auth.hasRole.apply(Auth, [].concat.apply(['admin'], arguments))
     },
 
     /**
@@ -196,8 +196,8 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      *
      * @return {Bool}
      */
-    isAdminSync() {
-      return Auth.hasRoleSync('admin');
+    isAdminSync () {
+      return Auth.hasRoleSync('admin')
     },
 
     /**
@@ -205,10 +205,10 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      *
      * @return {String} - a token string used for authenticating
      */
-    getToken() {
-      return $cookies.get('token');
+    getToken () {
+      return $cookies.get('token')
     }
-  };
+  }
 
-  return Auth;
+  return Auth
 }

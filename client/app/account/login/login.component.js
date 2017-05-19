@@ -30,7 +30,6 @@ export class LoginComponent {
     if (form.$valid) {
       this.Auth.login(user)
         .then(() => {
-          // Logged in, redirect to home
           this.$state.go('main')
         })
         .catch(err => {

@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
 import {
   UtilService
-} from './util.service';
+} from './util.service'
 
 export default angular.module('seedMongoApp.util', [])
   .factory('Util', UtilService)
-  .name;
+  .name

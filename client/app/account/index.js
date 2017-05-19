@@ -1,20 +1,20 @@
-'use strict';
+'use strict'
 
-import angular from 'angular';
+import angular from 'angular'
 
-import uiRouter from 'angular-ui-router';
+import uiRouter from 'angular-ui-router'
 
-import routing from './account.routes';
+import routing from './account.routes'
 
 export default angular.module('seedSqlApp.account', [uiRouter])
   .config(routing)
-  .run(function($rootScope) {
-    'ngInject';
+  .run(function ($rootScope) {
+    'ngInject'
 
-    $rootScope.$on('$stateChangeStart', function(event, next, nextParams, current) {
+    $rootScope.$on('$stateChangeStart', function (event, next, nextParams, current) {
       if (next.name === 'logout' && current && current.name && !current.authenticate) {
-        next.referrer = current.name;
+        next.referrer = current.name
       }
-    });
+    })
   })
-  .name;
+  .name

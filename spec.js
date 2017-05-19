@@ -1,12 +1,12 @@
-'use strict';
-/*eslint-env node*/
-var testsContext;
+'use strict'
+/* eslint-env node */
+var testsContext
 
-require('babel-polyfill');
-require('angular');
-require('angular-mocks');
-require('./client/components/ui-router/ui-router.mock');
-require('./client/components/socket/socket.mock');
+require('babel-polyfill')
+require('angular')
+require('angular-mocks')
+require('./client/components/ui-router/ui-router.mock')
+require('./client/components/socket/socket.mock')
 
-testsContext = require.context('./client', true, /\.spec\.js$/);
-testsContext.keys().forEach(testsContext);
+testsContext = require.context('./client', true, /\.spec\.js$/)
+testsContext.keys().forEach(testsContext)
