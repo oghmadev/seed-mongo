@@ -1,5 +1,7 @@
 'use strict'
 
+import angular from 'angular'
+
 export class NavbarComponent {
   constructor (Auth) {
     'ngInject'

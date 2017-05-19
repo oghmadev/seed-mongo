@@ -1,19 +1,4 @@
-@import '~font-awesome/css/font-awesome.css';
-
-/**
- *Font Awesome Fonts
- */
-
-@font-face {
-  font-family: 'FontAwesome';
-  src: url('/assets/fonts/font-awesome/fontawesome-webfont.eot?v=4.1.0');
-  src: url('/assets/fonts/font-awesome/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'),
-  url('/assets/fonts/font-awesome/fontawesome-webfont.woff?v=4.1.0') format('woff'),
-  url('/assets/fonts/font-awesome/fontawesome-webfont.ttf?v=4.1.0') format('truetype'),
-  url('/assets/fonts/font-awesome/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
+@import "~bulma/css/bulma.css";
 
 /**
  * App-wide Styles
@@ -26,15 +11,623 @@
   padding: 0.2em 0;
 }
 
+.is-fixed {
+  position: fixed;
+}
+
+.fixed-top-margin {
+  margin-top: 3.5em;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  height: 100%;
+}
+
+/* Aside */
+
+.aside {
+  background-color: #2c3e50;
+}
+
+.aside .main {
+  padding: 40px;
+  color: #ecf0f1;
+}
+
+.aside .main .item {
+  display: block;
+  padding: 10px 0;
+  color: #ecf0f1;
+}
+
+.aside .main .name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.aside .menu-list a:hover {
+  color: #95a5a6;
+  background-color: #2c3e50;
+}
+
+.content {
+  display: block;
+  background-color: #ecf0f1;
+  padding: 40px 20px;
+}
+
+.help {
+  font-size: 0.857em;
+}
+
+.asterisk {
+  color: #c0392b;
+  font-size: 0.8em;
+}
+
+div.card span.name {
+  color: #7f8c8d;
+}
+
+div.card span.icon {
+  font-size: 1em;
+}
+
+small span.icon {
+  font-size: 0.5em;
+}
+
+span.icon .fa-map-marker {
+  font-size: 1.5em;
+}
+
+div.card iframe {
+  border: 0;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.is-gray {
+  color: #7f8c8d;
+}
+
+.tag.is-gray {
+  background-color: #7f8c8d;
+}
+
+.fill-gray {
+  fill: #7f8c8d;
+}
+
+.navigation-disabled {
+  box-shadow: none !important;
+  border: 1px solid #dbdbdb !important;
+}
+
+.button.navigation:focus,
+.button.navigation:active {
+  box-shadow: 0 0 0.188em 0.125em rgba(8, 0, 4, 0.5);
+  border-color: rgba(8, 0, 4, 0.5);
+}
+
+.button.is-primary,
+.button.is-primary:focus {
+  background-color: #2980b9;
+}
+
+.button.is-primary:focus {
+  box-shadow: 0 0 0.188em 0.125em rgba(231, 76, 60, 0.5);
+}
+
+.button.is-primary:hover {
+  background-color: #096EB0;
+}
+
+.message.is-info .message-header {
+  background-color: #096EB0;
+}
+
+.message.is-info .message-body {
+  border-color: #096EB0;
+}
+
+.notification.is-danger {
+  background-color: #e74c3c;
+}
+
+.notification.is-success {
+  background-color: #4cae6e;
+}
+
+.notification.is-info {
+  background-color: #096EB0;
+}
+
+.button.is-danger,
+.button.is-danger:focus {
+  background-color: #e74c3c;
+}
+
+.button.is-danger:focus {
+  box-shadow: 0 0 0.188em 0.125em rgba(9, 110, 176, 0.5);
+}
+
+.button.is-danger:hover {
+  background-color: #c0392b;
+}
+
+.button.is-success,
+.button.is-success:focus {
+  background-color: #0B9A49;
+}
+
+.button.is-success:focus {
+  box-shadow: 0 0 0.188em 0.125em rgba(231, 118, 0, 0.5);
+}
+
+.button.is-success:hover {
+  background-color: #027936;
+}
+
+.button.is-warning,
+.button.is-warning:focus {
+  background-color: #f1c40f;
+}
+
+.button.is-warning:hover {
+  background-color: #f39c12;
+}
+
+.is-vspaced-small {
+  margin-top: 5%;
+}
+
+.is-blue {
+  color: #2980b9;
+}
+
+.tag.is-blue {
+  background-color: #4f9eb9;
+}
+
+.is-green {
+  color: #388e3c;
+}
+
+.tag.is-green {
+  background-color: #388e3c;
+}
+
+.is-yellow {
+  color: #FFC107;
+}
+
+.tag.is-yellow {
+  background-color: #FFC107;
+}
+
+.is-red {
+  color: #e74c3c;
+}
+
+.tag.is-red {
+  background-color: #e74c3c;
+}
+
+.is-white {
+  color: #ecf0f1;
+}
+
+.search-link {
+  color: #16a085;
+}
+
+sidebar.hero.is-fullheight {
+  min-height: 87vh;
+}
+
+.footer {
+  padding-top: 2.5vh;
+  padding-bottom: 0;
+}
+
+.fa-cross:before {
+  content: "†";
+}
+
+.move-right {
+  text-align: right !important;
+}
+
+.move-center {
+  text-align: center !important;
+}
+
+.padding-top-half-em {
+  padding-top: 0.5em;
+}
+
+.remove-button-padding {
+  padding-top: 1.7em;
+  padding-left: 2em;
+}
+
+.typeahead ul {
+  background-color: #ecf0f1;
+  border: 0.0625em solid #bdc3c7;
+  margin: 0.1875em 0 0 0;
+  list-style: none;
+  padding: 0.25em;
+}
+
+.typeahead .options {
+  cursor: pointer;
+  padding: 0.3125em;
+}
+
+.typeahead .options .option-name {
+  font-size: 0.9375em;
+  line-height: 0.9375em;
+  padding: 0.1875em;
+}
+
+.typeahead .options.active {
+  background-color: #2980b9;
+}
+
+.typeahead .options.active .option-name {
+  color: #ecf0f1;
+}
+
+hr.is-dotted {
+  border: 0;
+  border-bottom: 1px dashed #ecf0f1;
+  background: #bdc3c7;
+}
+
+.nav-box-model {
+  margin-top: 0.714em;
+  width: 100%;
+  z-index: 6;
+}
+
+.nav-item a.is-tab.is-active,
+a.nav-item.is-tab.is-active {
+  border-bottom: 3px solid #2980b9;
+  border-top: 3px solid transparent;
+  color: #2980b9;
+}
+
+.nav-item a.is-tab:hover,
+a.nav-item.is-tab:hover {
+  border-bottom: 1px solid #2980b9;
+  border-top: 1px solid transparent;
+}
+
+a.card-footer-item.is-primary,
+a.card-footer-item.is-primary:focus {
+  color: #2980b9;
+}
+
+a.card-footer-item.is-primary:hover {
+  color: #096EB0;
+  border-bottom-color: #096EB0;
+}
+
+a.card-footer-item.is-danger,
+a.card-footer-item.is-danger:focus {
+  color: #e74c3c;
+}
+
+a.card-footer-item.is-danger:hover {
+  color: #c0392b;
+  border-bottom-color: #c0392b;
+}
+
+.input:active,
+.input:focus,
+.input.is-active,
+.textarea:active,
+.textarea:focus,
+.textarea.is-active {
+  border-color: #2980b9;
+}
+
+.form-label {
+  margin-top: 0.35em;
+}
+
+.form-tooltip {
+  margin-top: 0.35em;
+  margin-left: 0.5em;
+}
+
+a > i {
+  color: #096EB0;
+}
+
+.select:after {
+  border: 1px solid #096EB0;
+  border-right: 0;
+  border-top: 0;
+  -webkit-transform: rotate(-45deg);
+}
+
+.content a:not(.button):hover {
+  border-bottom-color: #2980b9;
+}
+
+.content a:not(.button):visited {
+  color: #2c3e50;
+}
+
+.content a[borderless] {
+  border: none;
+}
+
+.menu-list a:hover {
+  background-color: #ecf0f1;
+  color: #2980b9;
+}
+
+td > a {
+  color: #2980b9;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-transition: none 86ms ease-out;
+  transition: none 86ms ease-out;
+}
+
+.select-disease {
+  font-size: 0.8em;
+  max-width: 42vw;
+}
+
+.select select:active,
+.select select:focus,
+.select select.is-active {
+  border-color: #2980b9;
+  outline: none;
+}
+
+.selected-row,
+tr.ng-scope.selected-row:hover {
+  background-color: #FFC82C;
+}
+
+.disabled-row,
+tr.ng-scope.disabled-row:hover {
+  background-color: #bdc3c7;
+}
+
+[class*="hint--"]:after {
+  text-shadow: none;
+}
+
+.transition {
+  transition: all 0.3s linear;
+}
+
+.animate-show {
+  transition: all 0.3s linear;
+}
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 0.625em;
+}
+
+.is-expanded-scrollable {
+  max-height: 35vh;
+  overflow: auto;
+}
+
+.is-collapsed-scrollable {
+  max-height: 0;
+  overflow: auto;
+}
+
+.has-margin-top {
+  margin-top: 0.8em !important;
+}
+
+.has-margin-top-quarter {
+  margin-top: 0.25em !important;
+}
+
+.has-margin-top-50 {
+  margin-top: 0.50em !important;
+}
+
+.has-margin-top-65 {
+  margin-top: 0.65em !important;
+}
+
+.has-no-margin-bottom {
+  margin-bottom: 0 !important;
+}
+
+.has-margin-bottom-07 {
+  margin-bottom: 0.7em !important;
+}
+
+.has-margin-bottom-1 {
+  margin-bottom: 1em !important;
+}
+
+.has-margin-bottom-2 {
+  margin-bottom: 2em !important;
+}
+
+.has-padding-bottom {
+  padding-bottom: 0.6em !important;
+}
+
+.has-padding-bottom-2x {
+  padding-bottom: 1em !important;
+}
+
+.has-width-4 {
+  width: 4em !important;
+}
+
+.has-width-11 {
+  width: 11em !important;
+}
+
+.has-width-13 {
+  width: 13em !important;
+}
+
+.has-width-15 {
+  width: 15em !important;
+}
+
+.has-width-30 {
+  width: 30em !important;
+}
+
+.has-width-40 {
+  width: 40em !important;
+}
+
+.has-width-50 {
+  width: 50em !important;
+}
+
+.has-width-05 {
+  width: 0.5em !important;
+}
+
+.has-width-15-percent {
+  width: 15%;
+}
+
+.has-width-40-percent {
+  width: 40%;
+}
+
+.has-height-4 {
+  height: 4em !important;
+}
+
+.medium-sized-modal {
+  width: 50vw !important;
+}
+
+.large-sized-modal {
+  width: 70vw !important;
+}
+
+.no-style-list {
+  list-style-type: none !important;
+}
+
+.footer-span {
+  width: 50%;
+  display: inline-block;
+}
+
+input[type=checkbox] {
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  padding: 1em;
+}
+
+.has-padding-right-small {
+  padding-right: 1em;
+}
+
+.has-padding-right-smaller {
+  padding-right: 0.2em;
+}
+
+.column-width-05 {
+  max-width: 5em !important;
+}
+
+.column-width-30 {
+  max-width: 30em !important;
+}
+
+.column-width-40 {
+  max-width: 40em !important;
+}
+
+.column-width-50 {
+  max-width: 50em !important;
+}
+
+.column-width-50-percent {
+  width: 50% !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.td-scrollable {
+  overflow: auto;
+}
+
+thead tr:hover {
+  background-color: inherit !important;
+}
+
+.textarea {
+  display: block;
+  line-height: 1.2;
+  max-height: 12.5em;
+  max-width: 100%;
+  min-height: 4.1em;
+  min-width: 100%;
+  padding: 0.625em;
+  resize: vertical;
+}
+
+.is-link-disabled {
+  cursor: default;
+  opacity: .5;
+}
+
+.has-no-margin {
+  margin: 0 !important;
+}
+
+.is-v-middle {
+  vertical-align: middle !important;
+}
+
+.tagline {
+  padding: 1.25em 0;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+.tabs li.is-active a {
+  border-bottom-color: #2980b9;
+  color: #2980b9;
+}
+
+/*
+ * This is a fix for fa-mobile being too small
+ */
+
+i.fa.fa-mobile {
+  font-size: 1.6em;
+  bottom: 0.06em;
+  position: relative;
+  padding-left: 0.1em;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
     max-width: 730px;
   }
 }
-
-/* Component styles are injected through gulp */
-/* inject:css */
-@import 'main/main.css';
-@import '../components/footer/footer.css';
-/* endinject */
