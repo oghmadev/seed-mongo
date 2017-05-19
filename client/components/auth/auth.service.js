@@ -31,9 +31,9 @@ export function AuthService ($location, $http, $cookies, $q, appConfig, Util, Us
      * @return {Promise}
      */
     login ({
-      email,
-      password
-    }, callback) {
+             email,
+             password
+           }, callback) {
       return $http.post('/auth/local', {
         email,
         password

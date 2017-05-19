@@ -35,7 +35,7 @@ export default function (app) {
   app.engine('html', require('ejs').renderFile)
   app.set('view engine', 'html')
   app.use(shrinkRay())
-  app.use(bodyParser.urlencoded({ extended: false }))
+  app.use(bodyParser.urlencoded({extended: false}))
   app.use(bodyParser.json())
   app.use(methodOverride())
   app.use(cookieParser())
@@ -76,7 +76,7 @@ export default function (app) {
     const stripAnsi = require('strip-ansi')
     const webpack = require('webpack')
     const makeWebpackConfig = require('../../webpack.make')
-    const webpackConfig = makeWebpackConfig({ DEV: true })
+    const webpackConfig = makeWebpackConfig({DEV: true})
     const compiler = webpack(webpackConfig)
     const browserSync = require('browser-sync').create()
 

@@ -2,7 +2,7 @@
 
 import mongoose from 'mongoose'
 
-var ThingSchema = new mongoose.Schema({
+const ThingSchema = new mongoose.Schema({
   name: String,
   info: String,
   active: Boolean
