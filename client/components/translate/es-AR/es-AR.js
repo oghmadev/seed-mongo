@@ -1,23 +1,15 @@
 'use strict'
 
-import settings from './settings/settings'
-import login from './login/login'
-import patients from './patients/patients'
-import practitioners from './practitioners/practitioners'
 import directives from './directives/directives'
-import modal from './modal/modal'
-import buttons from './buttons'
+import login from './login/login'
+import settings from './settings/settings'
 import answers from './answers'
-import units from './units'
+import buttons from './buttons'
 
 export default {
-  settings: settings,
-  login: login,
-  patients: patients,
-  practitioners: practitioners,
   directives: directives,
-  modal: modal,
-  buttons: buttons,
+  login: login,
+  settings: settings,
   answers: answers,
-  units: units
+  buttons: buttons
 }

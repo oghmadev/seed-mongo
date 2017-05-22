@@ -4,7 +4,7 @@ import angular from 'angular'
 import ngTranslate from 'angular-translate'
 import esAR from './es-AR/es-AR'
 
-export default angular.module('sisaApp.translate', [ngTranslate])
+export default angular.module('seedMongoApp.translate', [ngTranslate])
   .config(function ($translateProvider) {
     'ngInject'
 
