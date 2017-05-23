@@ -1,86 +1,111 @@
-<div class="container">
-  <div class="row col-md-6 col-md-offset-3">
-    <h1>Registrar usuario</h1>
+<section class="section is-fullheight">
+  <div class="column is-9">
+    <a href="" class="button navigation" ui-sref="admin">Volver</a>
+    <h2>{{'signup.register' | translate}}</h2>
   </div>
-  <div class="row col-md-6 col-md-offset-3">
-    <form class="form" name="form" ng-submit="$ctrl.register(form)" novalidate>
+  <div class="column is-6">
+    <form name="form" novalidate>
+      <div class="box">
+        <div class="field">
+          <p class="control">
+            <label class="label">{{'signup.name' | translate}}</label>
+            <input name="name" type="text" required class="input"
+                   ng-model="$ctrl.user.name" ng-pattern="/^[a-z ,.'\-áéíóúñãâàẽêèĩîìõôòũûùüçĝỹ]+$/i"
+                   ng-class="{'is-danger': form.name.$touched && form.name.$invalid}">
+            <span class="help is-danger" ng-if="form.name.$touched && form.name.$error.required">
+                  {{'signup.name.required' | translate}}
+                </span>
+            <span class="help is-danger" ng-if="form.name.$error.pattern">
+                  {{'signup.name.invalid' | translate}}
+                </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control">
+            <label class="label">{{'signup.email' | translate}}</label>
+            <input name="email" type="email" required class="input" ng-model="$ctrl.user.email"
+                   ng-class="{'is-danger': form.email.$touched && form.email.$invalid}">
+            <span class="help is-danger" ng-if="form.email.$touched && form.email.$error.required">
+              {{'signup.email.required' | translate}}
+            </span>
+            <span class="help is-danger" ng-if="form.email.$error.email && form.email.$touched">
+              {{'signup.email.invalid' | translate}}
+            </span>
+          </p>
+        </div>
 
-      <div class="form-group" ng-class="{'has-error': form.name.$invalid && form.name.$touched}">
-        <label>Nombre</label>
-        <input type="text" name="name" class="form-control" ng-model="$ctrl.user.name" required/>
+        <div class="field">
+          <p class="control">
+            <label class="label">{{'signup.password' | translate}}</label>
+            <input name="password" type="password" required class="input" ng-minlength="3"
+                   ng-model="$ctrl.user.password"
+                   ng-class="{'is-danger': form.password.$invalid && form.password.$touched}">
+            <span class="help is-danger"
+                  ng-if="(form.password.$error.minlength || form.password.$error.required) && form.password.$touched">
+                  {{'signup.password.length' | translate}}
+              </span>
+          </p>
+        </div>
 
-        <p class="help-block" ng-show="form.name.$error.required && form.name.$touched">
-          Por favor ingrese el Nombre
-        </p>
+        <div class="field">
+          <p class="control">
+            <label class="label">{{'signup.password.confirm' | translate}}</label>
+            <input name="confirmPassword" type="password" required class="input" ng-minlength="3"
+                   ng-model="$$ctrl.user.confirmPassword" match="$ctrl.user.password"
+                   ng-class="{'is-danger': form.confirmPassword.$invalid && form.confirmPassword.$touched}">
+            <span class="help is-danger"
+                  ng-if="(form.confirmPassword.$error.minlength || form.confirmPassword.$error.required) && (form.confirmPassword.$touched)">
+                  {{'signup.password.length' | translate}}
+              </span>
+            <span class="help is-danger" ng-if="form.confirmPassword.$error.match && form.confirmPassword.$touched">
+                {{'signup.password.match' | translate}}
+              </span>
+          </p>
+        </div>
 
-        <p class="help-block" ng-show="form.name.$error.pattern && form.name.$touched">
-          Formato Invalido.
+        <div class="field">
+          <p class="control">
+            <label class="label">{{'signup.role' | translate}}</label>
+            <span class="select" ng-class="{'is-danger': form.role.$invalid && form.role.$touched}">
+                <select ng-model="$ctrl.user.role" name="role" required>
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                </select>
+              </span>
+            <span class="help is-danger"
+                  ng-if="form.role.$error.required && form.role.$touched">
+                  {{'signup.role.required' | translate}}
+              </span>
+          </p>
+        </div>
+      </div>
+
+      <div class="field">
+        <p class="control move-right">
+          <a href="" class="button is-medium is-success" ng-click="$ctrl.register(form)" ng-disabled="form.$invalid">
+            <span class="icon" ng-if="!$ctrl.isSaving"><i class="fa fa-floppy-o"></i></span>
+            <span ng-if="!$ctrl.isSaving"><strong>{{'buttons.register' | translate}}</strong></span>
+            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw is-green" ng-if="$ctrl.isSaving"></i>
+          </a>
         </p>
       </div>
 
-      <div class="form-group" ng-class="{'has-error': form.email.$invalid && form.email.$touched}">
-        <label>Email</label>
-        <input type="email" name="email" class="form-control" ng-model="$ctrl.user.email" required/>
-
-        <p class="help-block" ng-if="form.email.$error.email && form.email.$touched">
-          El email no es valido.
-        </p>
-
-        <p class="help-block" ng-if="form.email.$error.required && form.email.$touched">
-          Por favor ingrese el email.
-        </p>
+      <div class="notification is-success" ng-if="$ctrl.saveSuccess">
+        <a class="delete" ng-click="$ctrl.closeNotification()"></a>
+        {{'signup.success' | translate}}
       </div>
 
-      <div class="form-group" ng-class="{'has-error': form.password.$invalid && form.password.$touched}">
-        <label>Contraseña</label>
-        <input type="password" name="password" class="form-control" ng-model="$ctrl.user.password" ng-minlength="3"
-               required/>
-        <p class="help-block"
-           ng-if="(form.password.$error.minlength || form.password.$error.required) && form.password.$touched">
-          La Contraseña debe tener al menos tres caracteres.
-        </p>
-        <p class="help-block" ng-show="form.password.$error.mongoose">
-          El email ingresado ya se encuentra registrado.
-        </p>
+      <div class="notification is-danger" ng-if="$ctrl.saveFailure">
+        <a class="delete" ng-click="$ctrl.closeNotification()"></a>
+        <span ng-if="$ctrl.errDuplicate">{{'signup.duplicate' | translate}}</span>
+        <span ng-if="!$ctrl.errDuplicate">{{'signup.failure' | translate}}</span>
       </div>
 
-      <div class="form-group" ng-class="{'has-error': form.confirmPassword.$invalid && form.confirmPassword.$touched}">
-        <label>Confirmar Contraseña</label>
-        <input type="password" name="confirmPassword" class="form-control" ng-model="$ctrl.user.confirmPassword"
-               match="$ctrl.user.password" ng-minlength="3" required/>
-        <p class="help-block"
-           ng-if="(form.confirmPassword.$error.minlength || form.confirmPassword.$error.required) && (form.confirmPassword.$touched)">
-          La Contraseña debe tener al menos tres caracteres.
-        </p>
-        <p class="help-block" ng-if="form.confirmPassword.$error.match && form.confirmPassword.$touched">
-          Las Contraseñas deben coincidir.
-        </p>
-      </div>
-
-      <div class="form-group" ng-class="{'has-error': form.role.$invalid && form.role.$touched}">
-        <label>Rol</label>
-        <select class="form-control" ng-model="$ctrl.user.role" name="role" required>
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-
-        <p class="help-block" ng-if="form.role.$error.required && form.role.$touched">
-          Por favor ingrese el Rol.
-        </p>
-      </div>
-
-      <div>
-        <button class="btn btn-inverse btn-lg btn-register" type="submit" ng-disabled="form.$invalid">
-          Registrar
-        </button>
-      </div>
     </form>
-
-    <div class="alert alert-danger ng-scope margin-top-2" ng-if="$ctrl.saveFailure">
-      <a href="#" class="close" ng-click="$ctrl.saveFailure = false" aria-label="close">×</a>
-      <strong>Error!</strong>
-      Ocurrió un problema en la creación del Usuario.
-    </div>
   </div>
-  <hr>
-</div>
+</section>
+
+
+
+
+

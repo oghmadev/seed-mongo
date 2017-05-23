@@ -1,5 +1,5 @@
-<div class="container">
-  <a ui-sref="signup">Registrar usuario</a>
+<div class="column is-9">
+  <a href="" class="button navigation" ui-sref="signup">Registrar usuario</a>
   <h2>Usuarios</h2>
   <ul class="list-group user-list">
     <li class="list-group-item" ng-repeat="user in $ctrl.users">
@@ -7,7 +7,7 @@
         <strong>{{user.name}}</strong><br>
         <span class="text-muted">{{user.email}}</span>
       </div>
-      <a ng-click="$ctrl.delete(user)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+      <a ng-click="$ctrl.delete(user)" class="trash"><span class="fa fa-trash fa-2x"></span>Borrar</a>
     </li>
   </ul>
 </div>

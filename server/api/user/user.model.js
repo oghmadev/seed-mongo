@@ -11,11 +11,11 @@ const UserSchema = new Schema({
   email: {
     type: String,
     lowercase: true,
-    required: true
+    required: true,
+    unique: true
   },
   role: {
-    type: String,
-    default: 'user'
+    type: String
   },
   password: {
     type: String,
@@ -53,38 +53,12 @@ UserSchema
  * Validations
  */
 
-// Validate empty email
-UserSchema
-  .path('email')
-  .validate(function (email) {
-    return email.length
-  }, 'Email cannot be blank')
-
 // Validate empty password
 UserSchema
   .path('password')
   .validate(function (password) {
     return password.length
   }, 'Password cannot be blank')
-
-// Validate email is not taken
-UserSchema
-  .path('email')
-  .validate(function (value, respond) {
-    return this.constructor.findOne({email: value}).exec()
-      .then(user => {
-        if (user) {
-          if (this.id === user.id) return respond(true)
-
-          return respond(false)
-        }
-
-        return respond(true)
-      })
-      .catch(function (err) {
-        throw err
-      })
-  }, 'The specified email address is already in use.')
 
 const validatePresenceOf = function (value) {
   return value && value.length

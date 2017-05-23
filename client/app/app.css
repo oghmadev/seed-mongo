@@ -171,6 +171,13 @@ div.card iframe {
   background-color: #027936;
 }
 
+.button.is-success[disabled],
+.button.is-success[disabled]:focus{
+  background-color: #0B9A49;
+  box-shadow: none;
+  cursor: default;
+}
+
 .button.is-warning,
 .button.is-warning:focus {
   background-color: #f1c40f;
