@@ -12,11 +12,11 @@
                      ng-model="$ctrl.user.name" ng-pattern="/^[a-z ,.'\-áéíóúñãâàẽêèĩîìõôòũûùüçĝỹ]+$/i"
                      ng-class="{'is-danger': form.name.$touched && form.name.$invalid}">
               <span class="help is-danger" ng-if="form.name.$touched && form.name.$error.required">
-                  {{'signup.name.required' | translate}}
-                </span>
+                {{'signup.name.required' | translate}}
+              </span>
               <span class="help is-danger" ng-if="form.name.$error.pattern">
-                  {{'signup.name.invalid' | translate}}
-                </span>
+                {{'signup.name.invalid' | translate}}
+              </span>
             </p>
           </div>
           <div class="field">
@@ -25,11 +25,11 @@
               <input name="email" type="email" required class="input" ng-model="$ctrl.user.email"
                      ng-class="{'is-danger': form.email.$touched && form.email.$invalid}">
               <span class="help is-danger" ng-if="form.email.$touched && form.email.$error.required">
-              {{'signup.email.required' | translate}}
-            </span>
+                {{'signup.email.required' | translate}}
+              </span>
               <span class="help is-danger" ng-if="form.email.$error.email && form.email.$touched">
-              {{'signup.email.invalid' | translate}}
-            </span>
+                {{'signup.email.invalid' | translate}}
+              </span>
             </p>
           </div>
 
@@ -98,13 +98,7 @@
           <a class="delete" ng-click="$ctrl.closeNotification()"></a>
           <span>{{'signup.failure' | translate}}</span>
         </div>
-
       </form>
     </div>
   </div>
 </section>
-
-
-
-
-
