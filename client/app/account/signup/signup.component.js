@@ -15,20 +15,19 @@ export class SignupController {
     this.user = {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      role: ''
     }
 
     this.isSaving = false
     this.saveSuccess = false
     this.saveFailure = false
-    this.errDuplicate = false
   }
 
   register (form) {
     if (form.$valid) {
       this.saveSuccess = false
       this.saveFailure = false
-      this.errDuplicate = false
       this.isSaving = true
 
       return this.Auth.createUser(this.user)
@@ -40,8 +39,6 @@ export class SignupController {
         .catch(error => {
           this.isSaving = false
           this.saveFailure = true
-
-          if (error.data.code != null && error.data.code === 11000) this.errDuplicate = true
         })
     }
   }
@@ -62,19 +59,18 @@ export class SignupController {
     this.user = {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      role: ''
     }
 
     this.isSaving = false
     this.saveSuccess = false
     this.saveFailure = false
-    this.errDuplicate = false
   }
 
   closeNotification () {
     this.saveSuccess = false
     this.saveFailure = false
-    this.errDuplicate = false
   }
 }
 

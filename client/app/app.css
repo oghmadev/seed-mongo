@@ -125,6 +125,13 @@ div.card iframe {
   background-color: #096EB0;
 }
 
+.button.is-primary[disabled],
+.button.is-primary[disabled]:focus{
+  background-color: #2980b9;
+  box-shadow: none;
+  cursor: default;
+}
+
 .message.is-info .message-header {
   background-color: #096EB0;
 }
@@ -171,12 +178,6 @@ div.card iframe {
   background-color: #027936;
 }
 
-.button.is-success[disabled],
-.button.is-success[disabled]:focus{
-  background-color: #0B9A49;
-  box-shadow: none;
-  cursor: default;
-}
 
 .button.is-warning,
 .button.is-warning:focus {
@@ -630,11 +631,4 @@ i.fa.fa-mobile {
   bottom: 0.06em;
   position: relative;
   padding-left: 0.1em;
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
 }

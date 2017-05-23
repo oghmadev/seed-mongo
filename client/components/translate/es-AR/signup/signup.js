@@ -1,7 +1,7 @@
 'use strict'
 
 export default {
-  register: 'Registrar Usuario',
+  register: 'Registro de Usuario',
   name: {
     name: 'Nombre Completo',
     required: 'Por favor ingrese el Nombre',
@@ -23,6 +23,5 @@ export default {
     required: 'Por favor ingrese el Rol'
   },
   success: 'Usuario creado con Exito',
-  duplicate: 'El usuario ya se encuentra Registrado',
   failure: 'Occurio un problema en la creación del Usuario'
 }
