@@ -4,7 +4,7 @@ import uiRouter from 'angular-ui-router'
 import routing from './admin.routes'
 
 export class AdminComponent {
-  constructor ($http, Auth, User) {
+  constructor($http, Auth, User) {
     'ngInject'
 
     this.$http = $http
@@ -12,14 +12,14 @@ export class AdminComponent {
     this.users = User.query()
   }
 
-  $onInit () {
+  $onInit() {
     this.Auth.getCurrentUser()
       .then(user => {
         this.currentUser = user._id
       })
   }
 
-  delete (user) {
+  delete(user) {
     user.$remove()
     this.users.splice(this.users.indexOf(user), 1)
   }
