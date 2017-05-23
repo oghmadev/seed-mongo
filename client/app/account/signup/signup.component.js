@@ -1,17 +1,18 @@
 'use strict'
 
+import angular from 'angular'
 import uiRouter from 'angular-ui-router'
 import routes from './signup.routes'
 
 export class SignupController {
-  constructor(Auth, $state) {
+  constructor (Auth, $state) {
     'ngInject'
 
     this.Auth = Auth
     this.$state = $state
   }
 
-  $onInit() {
+  $onInit () {
     this.user = {
       name: '',
       email: '',
@@ -24,7 +25,7 @@ export class SignupController {
     this.saveFailure = false
   }
 
-  register(form) {
+  register (form) {
     if (form.$valid) {
       this.saveSuccess = false
       this.saveFailure = false
@@ -36,14 +37,14 @@ export class SignupController {
           this.isSaving = false
           this.saveSuccess = true
         })
-        .catch(error => {
+        .catch(() => {
           this.isSaving = false
           this.saveFailure = true
         })
     }
   }
 
-  reset(form) {
+  reset (form) {
     const controlNames = Object.keys(form).filter(key => {
       return key.indexOf('$') !== 0
     })
@@ -68,7 +69,7 @@ export class SignupController {
     this.saveFailure = false
   }
 
-  closeNotification() {
+  closeNotification () {
     this.saveSuccess = false
     this.saveFailure = false
   }
