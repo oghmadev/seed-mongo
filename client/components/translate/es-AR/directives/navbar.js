@@ -1,7 +1,7 @@
 'use strict'
 
 export default {
-  appName: 'SISA',
+  appName: 'Seed-Mongo',
   home: 'Home',
   login: 'Ingresar',
   logout: 'Salir'
