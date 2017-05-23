@@ -1,54 +1,60 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-      <h1>Cambiar Contraseña</h1>
+<section class="section is-fullheight">
+  <div class="container columns is-vcentered">
+    <div class="column is-4 is-offset-3">
+      <h1 class="title">{{'settings.password.change' | translate}}</h1>
 
-      <div class="alert alert-warning alert-dismissible" role="alert" ng-if="$ctrl.saveFailure">
-        <button type="button" class="close"><span ng-click="$ctrl.closeNotification()">&times;</span></button>
-        Contraseña actual incorrecta.
+      <div class="notification is-danger" ng-if="$ctrl.saveFailure">
+        <button class="delete" ng-click="$ctrl.closeNotification()"></button>
+        {{ 'settings.password.currentIncorrect' | translate }}
       </div>
 
-      <form class="form" name="form" ng-submit="$ctrl.changePassword(form)" novalidate>
-        <div class="form-group">
-          <label>Contraseña Actual</label>
-          <input type="password" name="password" class="form-control" ng-model="$ctrl.user.oldPassword" required/>
-        </div>
+      <div class="box">
+        <form class="form" name="form" ng-submit="$ctrl.changePassword(form)" novalidate>
+          <label class="label">{{'settings.password.current' | translate}}</label>
+          <p class="control has-icon">
+            <input class="input" type="password" name="password" required
+                   ng-model="$ctrl.user.oldPassword" placeholder="●●●●●●●"/>
+            <i class="fa fa-key"></i>
+          </p>
 
-        <div class="form-group">
-          <label>Nueva Contraseña</label>
-          <input type="password" name="newPassword" class="form-control" ng-model="$ctrl.user.newPassword"
-                 ng-minlength="3" required/>
+          <label class="label">{{'settings.password.new' | translate}}</label>
+          <p class="control has-icon">
+            <input class="input" type="password" name="newPassword" required placeholder="●●●●●●●"
+                   ng-model="$ctrl.user.newPassword" ng-minlength="3"
+                   ng-class="{'is-danger': (form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$touched)}">
+            <span class="help is-danger"
+                  ng-if="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$touched)">
+          {{'settings.password.length' | translate}}
+        </span>
+            <i class="fa fa-key"></i>
+          </p>
 
-          <div class="alert alert-danger margin-top-15"
-               ng-if="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty)">
-            La Contraseña debe tener al menos tres caracteres.
-          </div>
-        </div>
+          <label class="label">{{'settings.password.confirm' | translate}}</label>
+          <p class="control has-icon">
+            <input class="input" type="password" name="confirmPassword" ng-model="$ctrl.user.confirmPassword"
+                   match="$ctrl.user.newPassword" ng-minlength="3" required placeholder="●●●●●●●"
+                   ng-class="{'is-danger': form.confirmPassword.$invalid && form.confirmPassword.$touched}">
+            <span class="help is-danger"
+                  ng-if="(form.confirmPassword.$error.minlength || form.confirmPassword.$error.required) && form.confirmPassword.$touched">
+          {{'settings.password.length' | translate}}
+        </span>
+            <span class="help is-danger" ng-if="form.confirmPassword.$error.match && form.confirmPassword.$touched">
+          {{'settings.password.match' | translate}}
+        </span>
+            <i class="fa fa-key"></i>
+          </p>
 
-        <div class="form-group">
-          <label>Confirmar la nueva contraseña</label>
+          <p class="control move-right">
+            <button class="button is-primary" type="submit" ng-disabled="form.$invalid">{{'buttons.save' | translate}}
+            </button>
+          </p>
+        </form>
+      </div>
 
-          <input type="password" name="confirmPassword" class="form-control" ng-model="$ctrl.user.confirmPassword"
-                 match="$ctrl.user.newPassword" ng-minlength="3" required/>
-
-          <div class="alert alert-danger margin-top-15"
-               ng-if="(form.confirmPassword.$error.minlength || form.confirmPassword.$error.required) && (form.confirmPassword.$dirty)">
-            La Contraseña debe tener al menos tres caracteres.
-          </div>
-
-          <div class="alert alert-danger margin-top-15"
-               ng-if="form.confirmPassword.$error.match && form.confirmPassword.$dirty">
-            Las contraseñas deben coincidir.
-          </div>
-
-          <div class="alert alert-success margin-top-15" role="alert" ng-if="$ctrl.saveSuccess">
-            <button type="button" class="close"><span ng-click="$ctrl.closeNotification()">&times;</span></button>
-            Contraseña cambiada exitosamente!
-          </div>
-
-        </div>
-        <button class="btn btn-lg btn-primary" type="submit" ng-disabled="form.$invalid">Guardar Cambios</button>
-      </form>
+      <div class="notification is-success" ng-if="$ctrl.saveSuccess">
+        <button class="delete" ng-click="$ctrl.closeNotification()"></button>
+        {{ 'settings.password.success' | translate }}
+      </div>
     </div>
   </div>
-</div>
+</section>
