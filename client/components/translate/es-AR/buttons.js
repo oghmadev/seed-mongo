@@ -9,8 +9,10 @@ export default {
   reset: 'Reiniciar',
   accept: 'Aceptar',
   cancel: 'Cancelar',
+  register: 'Registrar',
   search: 'Buscar',
   link: 'Vincular',
   view: 'Ver',
-  goToStart: 'Ir al Inicio'
+  goToStart: 'Ir al Inicio',
+  return: 'Volver'
 }
